@@ -46,7 +46,7 @@ body {
     top: 7.5rem;
     right: 1.25rem;
     background: var(--emergency-red);
-    color: white;
+    color: rgb(255, 255, 255);
     padding: 12px 20px;
     border-radius: 50px;
     cursor: pointer;
@@ -66,6 +66,7 @@ body {
     50% { box-shadow: 0 4px 20px rgba(255, 92, 92, 0.6); }
     100% { box-shadow: 0 4px 20px rgba(255, 92, 92, 0.3); }
 }
+
 
 /* =========================
    HEADER Y NAVEGACIÓN
@@ -88,17 +89,16 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    max-width: 1200px;
     margin: 0 auto;
     gap: 2rem;
 }
 
 /* Logo */
-.logo h2 {
-    color: #192E50;
-    font-size: clamp(2rem, 4vw, 2rem);
-    font-weight: 700;
-    word-break: break-word;
+.logo-img {
+    height: 4.375rem; /* 70px */
+    width: auto;  
+    display: flex;
+    align-items: center;
 }
 
 /* Menú de navegación horizontal */
@@ -119,6 +119,7 @@ body {
     top: 0;
     text-align: left;
     transition: none;
+    margin-left: 10rem;
 }
 .nav-menu a {
     text-decoration: none;
@@ -128,6 +129,7 @@ body {
     position: relative;
     padding: 0.5rem 0.5rem 0 0;
     cursor: pointer;
+   
 }
 .nav-menu a:hover {
     color: var(--primary-blue);
@@ -163,6 +165,7 @@ body {
     padding: 0.5rem;
     border-radius: 50%;
     transition: var(--transition);
+    margin-right: -1rem;
 }
 .cart-icon:hover {
     background: #F7F0E5;
@@ -194,8 +197,7 @@ body {
     font-weight: 500;
     cursor: pointer;
     transition: var(--transition);
-    margin-left: 0;
-    margin-right: 0;
+
 }
 .login-btn:hover {
     background: #3a7bc8;
@@ -227,7 +229,7 @@ body {
     color: white;
     position: relative;
     overflow: hidden;
-    padding-top: 120px;
+    padding-top: 90px;
 }
 .hero::before {
     content: '';
@@ -245,9 +247,10 @@ body {
 .hero-title {
     font-size: clamp(2rem, 6vw, 3.5rem);
     font-weight: 700;
-    margin-bottom: 2rem;
-    margin-left: 0;
+    margin-bottom: 1rem;
+    margin-left: 2rem;
     line-height: 1.2;
+
 }
 .hero-subtitle {
     font-size: 1.3rem;
@@ -263,6 +266,7 @@ body {
     flex-wrap: wrap;
     margin-left: 1.5rem;
     padding: 0;
+    margin-left: 2.1rem;
 }
 .hero-image {
     flex: 1;
@@ -367,7 +371,7 @@ button:focus,
     gap: 2rem;
 }
 .about-card {
-    background: #ff8370;
+    background: #71C1CF;
     padding: 2.5rem;
     border-radius: 20px;
     text-align: center;
@@ -543,6 +547,7 @@ button:focus,
     overflow: hidden;
     transition: var(--transition);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    display: block;;
 }
 .product-card:hover {
     transform: translateY(-10px);
@@ -562,11 +567,12 @@ button:focus,
 }
 .product-info {
     padding: 1.5rem;
+    display: block;
 }
 .product-info h3 {
     font-size: 1.2rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     color: var(--primary-blue);
 }
 .product-info p {
@@ -574,6 +580,7 @@ button:focus,
     margin-bottom: 1rem;
     font-size: 0.9rem;
     line-height: 1.5;
+    display: flex;
 }
 .price {
     font-size: 1.5rem;
@@ -1179,40 +1186,14 @@ button:focus,
    RESPONSIVE DESIGN
    ========================= */
 
-/* Pantallas medianas (<=1024px) */
-@media (max-width: 1024px) {
-    .container {
-        max-width: 95vw;
-        padding: 0 10px;
-    }
-    .nav-container {
-        padding: 1rem 1rem;
-        gap: 1rem;
-    }
-    .hero-content,
-    .hero-image {
-        padding: 2rem 1rem;
-    }
-    .about,
-    .resources,
-    .store,
-    .contact,
-    .slider-section,
-    .historias-section {
-        padding: 5rem 0;
-    }
-}
+
 
 /* Menú vertical y ajustes en móvil */
 @media (max-width: 768px) {
     .nav-container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        padding: 1rem 0.5rem;
-        gap: 0.5rem;
-    }
+    position: relative;
+    z-index: 1100;
+  }
     .hamburger {
         display: flex;
         flex-direction: column;
@@ -1221,10 +1202,20 @@ button:focus,
         z-index: 1001;
     }
     .hamburger span {
-        display: block;
-        width: 25px;
-        height: 3px;
-        background-color: #333;
+    height: 3px;
+    background: #333;
+    width: 25px;
+    border-radius: 2px;
+}
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
     }
     .nav-actions {
         display: flex;
@@ -1238,28 +1229,36 @@ button:focus,
         margin-left: 0.5rem;
     }
     .nav-menu {
-        position: fixed;
-        left: -100%;
-        top: 70px;
-        flex-direction: column;
-        background-color: var(--white);
-        width: 100vw;
-        text-align: center;
-        transition: left 0.3s ease;
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-        padding: 2rem 0;
-        gap: 1.2rem;
-        max-height: calc(100vh - 70px);
-        overflow-y: auto;
-        z-index: 1000;
-    }
+    position: absolute;
+    top: 6.438rem; /* Ajusta la altura del header */
+    right: 0;
+    left: auto;
+    width: 50%;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    background-color: #F7F0E5;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+    z-index: 999;
+}
     .nav-menu.active {
-        left: 0;
-    }
+    max-height: 500px; /* Puedes ajustar según el número de elementos */
+    opacity: 1;
+    transform: translateY(0);
+}
     .hero {
         flex-direction: column;
         text-align: center;
-        padding: 120px 0 3rem;
+        padding: 7.5rem 0 3rem;
+        margin-top: 3rem;
     }
     .hero-content {
         padding: 2rem 0.5rem;
@@ -1271,12 +1270,28 @@ button:focus,
         flex-direction: column;
         align-items: center;
         gap: 1rem;
+        display: flex;
     }
+
+    .hero-buttons button {
+    width: 60%;                 /* Ajusta el ancho de los botones */
+    max-width: 400px;           /* limita el ancho máximo */
+    min-width: 200px;           /* ancho mínimo */
+    border-radius: 30px;
+    padding: 16px 0;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #fff;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}   
     .hero-image {
         width: 100%;
         justify-content: center;
         display: flex;
-        padding: 1rem 0;
+        padding: 0.3rem 0;
     }
     .about-grid,
     .resources-grid,
@@ -1291,7 +1306,7 @@ button:focus,
         gap: 2rem;
     }
     .emergency-button {
-        top: 80px;
+        top: 120px;
         right: 10px;
         font-size: 13px;
         padding: 10px 16px;
@@ -1334,6 +1349,11 @@ button:focus,
         padding: 1.2rem 0.5rem 1rem 0.5rem;
     }
 }
+
+.header {
+    overflow: visible !important;
+  }
+ 
 
 /* Ajustes para pantallas pequeñas */
 @media (max-width: 600px) {
