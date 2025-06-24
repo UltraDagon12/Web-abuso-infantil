@@ -2,14 +2,19 @@
    VARIABLES Y RESETEO GLOBAL
    ========================= */
 :root {
-    --primary-blue: #4A90E2;
-    --soft-yellow: #F7DC6F;
+    --primary-blue: #1C3F81;
+    --soft-yellow: #F4AB4C;
     --gentle-green: #A9DFBF;
     --light-bg: #FAFAFA;
     --dark-text: #333333;
     --emergency-red: #FF5C5C;
     --white: #ffffff;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
 }
 
 * {
@@ -93,7 +98,7 @@ body {
 }
 
 .logo-img {
-    height: 4.375rem; /* 70px */
+    height: 4.8rem; /* 70px */
     width: auto;  
     display: flex;
     align-items: center;
@@ -212,7 +217,6 @@ body {
    HERO SECTION
    ========================= */
 .hero {
-    background: linear-gradient(135deg, #5f80b7 0%, #192E50 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -225,8 +229,8 @@ body {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
     pointer-events: none;
+    background: rgba(0, 0, 0, 0.4);
 }
 .hero-content {
     flex: 1;
@@ -263,6 +267,7 @@ body {
     align-items: center;
     padding: 2rem;
     z-index: 2;
+    
 }
 .floating-card {
     background: rgba(255, 255, 255, 0.15);
@@ -299,7 +304,7 @@ body {
     outline: none;
 }
 .btn-primary {
-    background: var(--primary-blue);
+    background: #192E50;
     color: white;
 }
 .btn-primary:hover {
@@ -335,6 +340,7 @@ button:focus,
 .section-header {
     text-align: center;
     margin-bottom: 4rem;
+    margin-top: -4rem;
 }
 .section-header h2 {
     font-size: clamp(1.5rem, 5vw, 2.5rem);
@@ -358,6 +364,22 @@ button:focus,
     grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr)); /* 300px */
     gap: 2rem;
 }
+
+.about-grid + h1 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr)); /* 300px */
+    gap: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.about-video {
+    width: 100%;
+    height: 20rem; /* 320px */
+    border-radius: 1.25rem; /* 20px */
+    overflow: hidden;
+    margin-top: 2rem;
+}
 .about-card {
     background: #71C1CF;
     padding: 2.5rem;
@@ -371,7 +393,7 @@ button:focus,
     box-shadow: 0 1.25rem 2.5rem rgba(38, 38, 38, 0.4); /* 0 20px 40px */
 }
 .card-icon {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-bottom: 1rem;
 }
 .about-card h3 {
@@ -385,12 +407,50 @@ button:focus,
     color: #ffffff;
 }
 
+
+/* =========================
+   SECCIÓN MEMBERS
+   ========================= */
+
+.about-member {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+   margin-top: 5rem;
+   margin-bottom: 3rem;
+}
+
+.member-photo {
+    flex-shrink: 0;
+}
+
+.member-photo img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-top: 1rem;
+}
+
+.member-info h3 {
+    margin: 0 0 8px 0;
+}
+
+.member-info p {
+    margin: 0 0 4px 0;
+}
+
+.member-info p:last-child {
+    margin-bottom: 0;
+}
+
 /* =========================
    SLIDER DE IMÁGENES
    ========================= */
 .slider-section {
     padding: 8rem 0;
-    background: linear-gradient(135deg, #F7F0E5 0%, #E84F37 100%);
+    background: linear-gradient(135deg, #F7F0E5 0%, var(--soft-yellow) 100%);
 }
 .slider-section h2 {
     text-align: center;
@@ -405,7 +465,7 @@ button:focus,
     margin: 0 auto;
     border-radius: 1.25rem; /* 20px */
     overflow: hidden;
-    box-shadow: 0 1.25rem 2.5rem rgba(44, 44, 44, 0.95); /* 0 20px 40px */
+    box-shadow: 0 1.25rem 2.5rem #6b4b21; /* 0 20px 40px */
 }
 .slide {
     display: none;
@@ -419,13 +479,14 @@ button:focus,
     width: 100%;
     height: 400px;
     object-fit: cover;
+
 }
 .slide-content {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(transparent, rgb(255, 255, 255, 0.5));
+    background: linear-gradient(transparent, rgb(255, 255, 255, 0.95));
     color: #192E50;
     padding: 2rem;
 }
@@ -433,6 +494,7 @@ button:focus,
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
+    color: white;
 }
 .slider-controls {
     text-align: center;
@@ -516,7 +578,7 @@ button:focus,
    SECCIÓN TIENDA
    ========================= */
 .store {
-    padding: 8rem 0;
+    padding: 6rem 0;
     background: var(--light-bg);
 }
 .store-grid {
@@ -529,13 +591,24 @@ button:focus,
         grid-template-columns: repeat(4, 1fr);
     }
 }
+
+.btn-primary.add-to-cart { 
+    background: var(--primary-blue); 
+    color: white; 
+    margin-top: auto;
+    display: block;
+    width: 100%;
+}
+
 .product-card {
     background: var(--white);
     border-radius: 1.25rem; /* 20px */
     overflow: hidden;
     transition: var(--transition);
     box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.05); /* 0 4px 20px */
-    display: block;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 .product-card:hover {
     transform: translateY(-0.625rem); /* -10px */
@@ -555,7 +628,9 @@ button:focus,
 }
 .product-info {
     padding: 1.5rem;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
 }
 .product-info h3 {
     font-size: 1.2rem;
@@ -575,6 +650,8 @@ button:focus,
     font-weight: 700;
     color: var(--emergency-red);
     margin-bottom: 1rem;
+    display: inline; /* Mantiene el precio en la misma línea */
+    vertical-align: middle;
 }
 
 /* =========================
@@ -643,16 +720,35 @@ button:focus,
     background: var(--dark-text);
     color: white;
     padding: 4rem 0 2rem;
+    width: 100vw;
+    min-width: 100vw;
+    left: 0;
+    right: 0;
+    position: relative;
+    box-sizing: border-box;
+    margin-bottom: 0;
 }
 .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr)); /* 250px */
     gap: 2rem;
     margin-bottom: 2rem;
+    margin-left: 3rem;
+    width: 100%;
 }
-.footer-section h3,
 .footer-section h4 {
     margin-bottom: 1rem;
+    margin-left: 5rem;
+    color: var(--soft-yellow);
+}
+.footer-section-emergency h4{
+    margin-bottom: 1rem;
+    margin-left: 0;
+    color: var(--soft-yellow);
+}
+.footer-section h3 {
+    margin-bottom: 1rem;
+    margin-right: 10rem;
     color: var(--soft-yellow);
 }
 .footer-section p {
@@ -661,6 +757,7 @@ button:focus,
 }
 .footer-section ul {
     list-style: none;
+    margin-left: 5rem;
 }
 .footer-section ul li {
     margin-bottom: 0.5rem;
@@ -684,7 +781,7 @@ button:focus,
    MODALES (EMERGENCIA, CARRITO, LOGIN)
    ========================= */
 .modal {
-    display: none;
+    display: flex;
     position: fixed;
     z-index: 2000;
     left: 0;
@@ -706,6 +803,17 @@ button:focus,
     max-height: 90vh;
     overflow-y: auto;
 }
+
+modal-content, .modal-body {
+    scrollbar-width: none;      /* Firefox */
+    -ms-overflow-style: none;   /* IE y Edge */
+}
+
+.modal-content::-webkit-scrollbar,
+.modal-body::-webkit-scrollbar {
+    display: none;              /* Chrome, Safari y Opera */
+}
+
 .modal-header {
     background: var(--primary-blue);
     color: white;
@@ -731,6 +839,37 @@ button:focus,
 }
 .modal-body {
     padding: 2rem;
+}
+
+/* Centrar verticalmente el modal y subirlo un poco para evitar que se corte abajo */
+.modal-content {
+    margin: 2% auto 0 auto !important; /* mueve el modal hacia arriba */
+    top: 0;
+    transform: translateY(0);
+    position: relative;
+    display: block;
+}
+
+#accountMenu {
+  min-width: 150px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 20001 !important;
+}
+#accountMenu button {
+  text-align: left;
+}
+
+/* ESTILOS PARA MOVIL? */
+
+@media (max-width: 768px) {
+    .modal-content {
+        margin: 5% auto 0 auto !important;
+    }
+}
+@media (max-width: 480px) {
+    .modal-content {
+        margin: 8% auto 0 auto !important;
+    }
 }
 
 .emergency-numbers {
@@ -883,6 +1022,9 @@ button:focus,
 
 .login-modal-content {
     max-width: 25rem; /* 400px */
+    border-radius: 2rem; /* 32px */
+    margin-bottom: 0; /* espacio inferior */
+    margin-top: 3rem;  /* Mover el modal hacia arriba */
 }
 .login-form {
     display: flex;
@@ -1102,7 +1244,7 @@ button:focus,
     background: #fff;
     border-radius: 0.875rem; /* 14px */
     box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.07); /* 0 4px 24px */
-    padding: 2.5rem 1.875rem; /* 40px 30px */
+    padding: 7rem 1.875rem; /* 112px 30px */
 }
 .donaciones-section .section-header {
     text-align: center;
@@ -1143,6 +1285,7 @@ button:focus,
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s;
+    
 }
 .donaciones-form .btn.btn-primary:hover {
     background: #0ea5e9;

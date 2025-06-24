@@ -2,19 +2,21 @@
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
 
-navMenu.addEventListener('click', (e) => {
-    const target = e.target;
-    if (target.tagName === 'A' && target.getAttribute('href').startsWith('#')) {
-        // Cierra el menú si el enlace lleva a una sección de la misma página
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-    }
-});
+    navMenu.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target.tagName === 'A' && target.getAttribute('href').startsWith('#')) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+}
+
 // Slider de imágenes
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
@@ -49,18 +51,24 @@ function allowScroll() {
     document.documentElement.style.overflow = 'auto';
 }
 function showEmergencyModal() {
-    emergencyModal.style.display = 'block';
-    blockScroll();
+    if (emergencyModal) {
+        emergencyModal.style.display = 'block';
+        blockScroll();
+    }
 }
 function closeEmergencyModal() {
-    emergencyModal.style.display = 'none';
-    allowScroll();
+    if (emergencyModal) {
+        emergencyModal.style.display = 'none';
+        allowScroll();
+    }
 }
 
-emergencyBtn.addEventListener('click', showEmergencyModal);
-emergencyModal.addEventListener('click', (e) => {
-    if (e.target === emergencyModal) closeEmergencyModal();
-});
+if (emergencyBtn && emergencyModal) {
+    emergencyBtn.addEventListener('click', showEmergencyModal);
+    emergencyModal.addEventListener('click', (e) => {
+        if (e.target === emergencyModal) closeEmergencyModal();
+    });
+}
 
 // Carrito de compras
 let cart = [];
@@ -81,20 +89,21 @@ function addToCart(name, price, image) {
 }
 
 function updateCartUI() {
-    cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+    if (cartCount) cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
     if (cart.length === 0) {
-        cartEmpty.style.display = 'block';
-        cartSummary.style.display = 'none';
-        cartItems.innerHTML = '';
+        if (cartEmpty) cartEmpty.style.display = 'block';
+        if (cartSummary) cartSummary.style.display = 'none';
+        if (cartItems) cartItems.innerHTML = '';
     } else {
-        cartEmpty.style.display = 'none';
-        cartSummary.style.display = 'block';
+        if (cartEmpty) cartEmpty.style.display = 'none';
+        if (cartSummary) cartSummary.style.display = 'block';
         renderCartItems();
         updateCartTotal();
     }
 }
 
 function renderCartItems() {
+    if (!cartItems) return;
     cartItems.innerHTML = '';
     cart.forEach((item, index) => {
         const cartItem = document.createElement('div');
@@ -128,26 +137,35 @@ window.removeFromCart = function(index) {
 };
 
 function updateCartTotal() {
+    if (!cartTotal) return;
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     cartTotal.textContent = total.toFixed(2);
 }
 
 function showCartModal() {
-    cartModal.style.display = 'block';
-    blockScroll();
+    if (cartModal) {
+        cartModal.style.display = 'block';
+        blockScroll();
+    }
 }
 function closeCartModal() {
-    cartModal.style.display = 'none';
-    allowScroll();
+    if (cartModal) {
+        cartModal.style.display = 'none';
+        allowScroll();
+    }
 }
 
-cartIcon.addEventListener('click', showCartModal);
-cartModal.addEventListener('click', (e) => {
-    if (e.target === cartModal) closeCartModal();
-});
+if (cartIcon && cartModal) {
+    cartIcon.addEventListener('click', showCartModal);
+    cartModal.addEventListener('click', (e) => {
+        if (e.target === cartModal) closeCartModal();
+    });
+}
 
 function proceedToCheckout() {
-    alert('Redirigiendo al proceso de pago...\n\nTotal: $' + cartTotal.textContent);
+    if (cartTotal) {
+        alert('Redirigiendo al proceso de pago...\n\nTotal: $' + cartTotal.textContent);
+    }
 }
 
 // Notificación de carrito
@@ -196,49 +214,22 @@ const loginModal = document.getElementById('loginModal');
 const loginForm = document.getElementById('loginForm');
 
 function showLoginModal() {
-    loginModal.style.display = 'block';
-    blockScroll();
+    if (loginModal) {
+        loginModal.style.display = 'block';
+        blockScroll();
+    }
 }
 function closeLoginModal() {
-    loginModal.style.display = 'none';
-    allowScroll();
+    if (loginModal) {
+        loginModal.style.display = 'none';
+        allowScroll();
+    }
 }
-loginBtn.addEventListener('click', showLoginModal);
-loginModal.addEventListener('click', (e) => {
-    if (e.target === loginModal) closeLoginModal();
-});
-
-loginForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-    if (!email || !password) {
-        alert('Por favor, completa todos los campos.');
-        return;
-    }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        alert('Por favor, ingresa un correo electrónico válido.');
-        return;
-    }
-    const submitButton = loginForm.querySelector('.login-submit');
-    const originalText = submitButton.textContent;
-    submitButton.textContent = 'Iniciando sesión...';
-    submitButton.disabled = true;
-    setTimeout(() => {
-        alert('¡Bienvenido! Has iniciado sesión correctamente.');
-        loginBtn.textContent = 'Mi Cuenta';
-        loginBtn.style.background = 'var(--gentle-green)';
-        loginBtn.style.color = 'var(--dark-text)';
-        closeLoginModal();
-        loginForm.reset();
-        submitButton.textContent = originalText;
-        submitButton.disabled = false;
-    }, 2000);
-});
-
-function showRegisterForm() {
-    alert('Funcionalidad de registro en desarrollo...');
+if (loginBtn && loginModal) {
+    loginBtn.addEventListener('click', showLoginModal);
+    loginModal.addEventListener('click', (e) => {
+        if (e.target === loginModal) closeLoginModal();
+    });
 }
 
 // Scroll suave para enlaces
@@ -260,31 +251,33 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Formulario de contacto
 const contactForm = document.getElementById('contactForm');
-contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
-    if (!name || !email || !message) {
-        alert('Por favor, completa todos los campos.');
-        return;
-    }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        alert('Por favor, ingresa un correo electrónico válido.');
-        return;
-    }
-    const submitButton = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitButton.textContent;
-    submitButton.textContent = 'Enviando...';
-    submitButton.disabled = true;
-    setTimeout(() => {
-        alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
-        contactForm.reset();
-        submitButton.textContent = originalText;
-        submitButton.disabled = false;
-    }, 2000);
-});
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+        if (!name || !email || !message) {
+            alert('Por favor, completa todos los campos.');
+            return;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Por favor, ingresa un correo electrónico válido.');
+            return;
+        }
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        submitButton.textContent = 'Enviando...';
+        submitButton.disabled = true;
+        setTimeout(() => {
+            alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
+            contactForm.reset();
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
+        }, 2000);
+    });
+}
 
 // Animaciones al hacer scroll
 const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
@@ -301,15 +294,17 @@ document.querySelectorAll('.about-card, .resource-card, .product-card').forEach(
 // Efecto de scroll en header
 let lastScrollTop = 0;
 const header = document.querySelector('.header');
-window.addEventListener('scroll', () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    if (scrollTop > lastScrollTop && scrollTop > 100) {
-        header.style.transform = 'translateY(-100%)';
-    } else {
-        header.style.transform = 'translateY(0)';
-    }
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-});
+if (header) {
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            header.style.transform = 'translateY(-100%)';
+        } else {
+            header.style.transform = 'translateY(0)';
+        }
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+}
 
 // Animaciones al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
@@ -322,12 +317,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Botón de emergencia animación
-emergencyBtn.addEventListener('mouseenter', () => {
-    emergencyBtn.style.animation = 'none';
-});
-emergencyBtn.addEventListener('mouseleave', () => {
-    emergencyBtn.style.animation = 'pulse 2s infinite';
-});
+if (emergencyBtn) {
+    emergencyBtn.addEventListener('mouseenter', () => {
+        emergencyBtn.style.animation = 'none';
+    });
+    emergencyBtn.addEventListener('mouseleave', () => {
+        emergencyBtn.style.animation = 'pulse 2s infinite';
+    });
+}
 
 // Accesibilidad con teclado
 document.addEventListener('keydown', (e) => {
@@ -349,7 +346,6 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
         if (entry.isIntersecting) {
             const img = entry.target;
             img.style.transition = 'opacity 0.3s ease-in-out';
-            // Si la imagen ya está cargada, muestra de inmediato
             if (img.complete) {
                 img.style.opacity = '1';
             } else {
@@ -362,7 +358,6 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
     });
 });
 
-// Aplica observer y loading="lazy" solo a imágenes que NO sean el logo
 document.querySelectorAll('img:not(.logo)').forEach(img => {
     img.setAttribute('loading', 'lazy');
     img.style.opacity = '0';
@@ -381,3 +376,16 @@ if (donacionesForm) {
         }, 4000);
     });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const emergencyBtn = document.getElementById('emergencyBtn');
+    const emergencyModal = document.getElementById('emergencyModal');
+
+    if (emergencyBtn && emergencyModal) {
+        emergencyBtn.addEventListener('click', showEmergencyModal);
+        emergencyModal.addEventListener('click', (e) => {
+            if (e.target === emergencyModal) closeEmergencyModal();
+        });
+    }
+});
+

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protección Infantil - Prevención y Ayuda</title>
+    <link rel="stylesheet" href="styles-tienda.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header-tienda">
+        <nav class="nav" aria-label="Navegación principal">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="index.html" aria-label="Ir al inicio">
+                        <img src="images/Logo.png" alt="Logo" class="logo-img">
+                    </a>
+                </div>
+                <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#sobre">Sobre nosotros</a></li>
+                    <li><a href="#historias">Historias que hablan</a></li>
+                    <li><a href="#tienda">Tienda solidaria</a></li>
+                    <li><a href="#contacto">Contactos</a></li>
+                    <li><a href="#donaciones">Donaciones</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="store" id="tienda">
+            <div class="container">
+                <h1 class="section-header">Tienda Solidaria</h1>
+                <!-- Layout: imagen en cuadro, info fuera -->
+                <div class="product-detail-layout">
+                    <div class="product-detail-image-box">
+                        <img src="images/producto1.webp" alt="Producto 1">
+                    </div>
+                    <div class="product-detail-info">
+                        <nav class="breadcrumb">Inicio / Camisetas / Motorhead</nav>
+                        <h1 class="product-title">Camiseta oversize motorhead</h1>
+                        <div class="product-price">$13.99</div>
+                        <p class="product-desc">Revisa la talla correcta haciendo click en: <em>“Cuadro de tallas”</em></p>
+                        <div class="product-sizes">
+                            <span>Tallas Adultos</span>
+                            <div class="sizes-list">
+                                <button>L</button>
+                                <button>M</button>
+                                <button>S</button>
+                                <button>XL</button>
+                                <button>XS</button>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <input type="number" min="1" value="1" class="product-qty">
+                            <button class="btn btn-primary">Añadir al carrito</button>
+                        </div>
+                        <div class="product-meta">
+                            <span>SKU: N/D</span>
+                            <span>Categorías: Bandas, Camisetas, Oversize</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tu voz, su escudo.</h3>
+                    <p>Trabajando juntos para crear un mundo más seguro para todos los niños.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#sobre">Información</a></li>
+                        <li><a href="#recursos">Recursos</a></li>
+                        <li><a href="#tienda">Tienda</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section-emergency">
+                    <h4>Emergencias</h4>
+                    <p>📞 911</p>
+                    <p>📞 01-800-123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Punto focal. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts-tienda.js"></script>
+</body>
+</html>

@@ -4,15 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Protección Infantil - Prevención y Ayuda</title>
-    <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="styles.css?v=1">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-  body, h1, h2, h3, h4, h5, h6, p, a, button, input, textarea {
-    font-family: 'Poppins', sans-serif !important;
-  }
-</style>
+      body, h1, h2, h3, h4, h5, h6, p, a, button, input, textarea {
+        font-family: 'Poppins', sans-serif !important;
+      }
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZX6VZ3WZSY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZX6VZ3WZSY');
+    </script>
 </head>
 <body>
+
     <!-- Emergency Button -->
     <div class="emergency-button" id="emergencyBtn">
         <span>🚨 EMERGENCIA</span>
@@ -41,6 +50,10 @@
                         <span class="cart-count" id="cartCount">0</span>
                     </div>
                     <button class="login-btn" id="loginBtn">Iniciar Sesión</button>
+                    <!-- Menú de cuenta para logout -->
+                    <div id="accountMenu" style="display:none; position:absolute; right:10px; top:60px; background:#fff; border:1px solid #ccc; border-radius:6px; z-index:2001;">
+                      <button id="logoutBtn" style="width:100%; padding:10px; border:none; background:none; cursor:pointer;">Cerrar sesión</button>
+                    </div>
                     <div class="hamburger" id="hamburger">
                         <span></span>
                         <span></span>
@@ -52,7 +65,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="inicio" class="hero">
+    <section id="inicio" class="hero" style="background-image: url('images/Fondo1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
         <div class="hero-content">
             <h1 class="hero-title">Protegiendo a Nuestros Niños</h1>
             <p class="hero-subtitle">Información, recursos y apoyo para prevenir el abuso infantil y crear entornos seguros para todos los niños.</p>
@@ -69,54 +82,27 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="sobre" class="about">
-        <div class="container">
-            <div class="section-header">
-                <h2>La Importancia de la Protección Infantil</h2>
-                <p>Crear conciencia y proporcionar herramientas para proteger a los menores de edad.</p>
-            </div>
-            <div class="about-grid">
-                <div class="about-card">
-                    <div class="card-icon">🛡️</div>
-                    <h3>Prevención</h3>
-                    <p>Educación y recursos para identificar y prevenir situaciones de riesgo antes de que ocurran.</p>
-                </div>
-                <div class="about-card">
-                    <div class="card-icon">💬</div>
-                    <h3>Comunicación</h3>
-                    <p>Fomentar la comunicación abierta entre adultos y niños para crear espacios seguros.</p>
-                </div>
-                <div class="about-card">
-                    <div class="card-icon">🤝</div>
-                    <h3>Apoyo</h3>
-                    <p>Proporcionar apoyo integral a familias y comunidades para fortalecer la protección infantil.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Image Slider Section -->
     <section class="slider-section">
         <div class="container">
             <h2>Educación Visual</h2>
             <div class="slider" id="imageSlider">
                 <div class="slide active">
-                    <img src="https://images.pexels.com/photos/8613317/pexels-photo-8613317.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Familia feliz">
+                    <img src="images/ED1.jpg" alt="Familia feliz">
                     <div class="slide-content">
                         <h3>Familias Unidas</h3>
                         <p>La comunicación familiar es clave para la protección infantil.</p>
                     </div>
                 </div>
                 <div class="slide">
-                    <img src="https://images.pexels.com/photos/8613103/pexels-photo-8613103.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Niños jugando seguros">
+                    <img src="images/ED2.jpg" alt="Niños jugando seguros">
                     <div class="slide-content">
                         <h3>Espacios Seguros</h3>
                         <p>Crear entornos donde los niños puedan crecer sin temor.</p>
                     </div>
                 </div>
                 <div class="slide">
-                    <img src="https://images.pexels.com/photos/8613284/pexels-photo-8613284.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Educación infantil">
+                    <img src="images/ED3.jpg" alt="Educación infantil">
                     <div class="slide-content">
                         <h3>Educación Preventiva</h3>
                         <p>Enseñar a los niños sobre seguridad personal de manera apropiada.</p>
@@ -158,7 +144,7 @@
                 <div class="resource-card">
                     <h3>📚 Materiales Educativos</h3>
                     <p>Guías para padres y educadores</p>
-                    <button class="btn btn-secondary">Descargar Recursos</button>
+                    <a href="https://www.ejemplo.com/recursos" class="btn btn-secondary" target="_blank" rel="noopener">Descargar Recursos</a>
                 </div>
                 <div class="resource-card">
                     <h3>👥 Grupos de Apoyo</h3>
@@ -249,33 +235,33 @@
         </div>
     </section>
 
-<!-- Apartado de Donaciones -->
-<section id="donaciones" class="donaciones-section">
-    <div class="container">
-        <div class="section-header">
-            <h2>Donaciones</h2>
-            <p>Tu apoyo es fundamental para proteger a la infancia. ¡Cada aporte cuenta!</p>
+    <!-- Apartado de Donaciones -->
+    <section id="donaciones" class="donaciones-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Donaciones</h2>
+                <p>Tu apoyo es fundamental para proteger a la infancia. ¡Cada aporte cuenta!</p>
+            </div>
+            <form class="donaciones-form" id="donacionesForm">
+                <div class="form-group">
+                    <label for="donadorNombre">Nombre completo</label>
+                    <input type="text" id="donadorNombre" placeholder="Tu nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="donadorEmail">Correo electrónico</label>
+                    <input type="email" id="donadorEmail" placeholder="tu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="donacionMonto">Monto a donar (USD)</label>
+                    <input type="number" id="donacionMonto" placeholder="Ej: 20" min="1" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Donar Ahora</button>
+            </form>
+            <div id="donacionGracias" style="display:none; margin-top:20px; color:green; font-weight:600;">
+                ¡Gracias por tu generosidad! Tu donación ayuda a proteger a más niños.
+            </div>
         </div>
-        <form class="donaciones-form" id="donacionesForm">
-            <div class="form-group">
-                <label for="donadorNombre">Nombre completo</label>
-                <input type="text" id="donadorNombre" placeholder="Tu nombre" required>
-            </div>
-            <div class="form-group">
-                <label for="donadorEmail">Correo electrónico</label>
-                <input type="email" id="donadorEmail" placeholder="tu@email.com" required>
-            </div>
-            <div class="form-group">
-                <label for="donacionMonto">Monto a donar (USD)</label>
-                <input type="number" id="donacionMonto" placeholder="Ej: 20" min="1" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Donar Ahora</button>
-        </form>
-        <div id="donacionGracias" style="display:none; margin-top:20px; color:green; font-weight:600;">
-            ¡Gracias por tu generosidad! Tu donación ayuda a proteger a más niños.
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- Contact Section -->
     <section id="contacto" class="contact">
@@ -315,12 +301,53 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    <section id="sobre" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>¿Quienes somos?</h2>
+                <p>Punto Focal es una agencia creativa que combina estrategia y diseño para desarrollar mensajes visuales claros y sensibles. Nos enfocamos en construir comunicaciones coherentes que aborden problemáticas sociales como el abuso infantil, cuidando cada detalle para generar conciencia, informar y movilizar a la comunidad.</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="card-icon">🛡️</div>
+                    <h3>Historia</h3>
+                    <p>Educación y recursos para identificar y prevenir situaciones de riesgo antes de que ocurran.</p>
+                </div>
+                <div class="about-card">
+                    <div class="card-icon">💬</div>
+                    <h3>Misión</h3>
+                    <p>Promover la conciencia y acción frente al abuso infantil en la ciudad de Ambato, generando un entorno de protección mediante una campaña que conecte emocionalmente con los padres de familia y los oriente en cómo prevenirlo efectivamente.</p>
+                </div>
+                <div class="about-card">
+                    <div class="card-icon">🤝</div>
+                    <h3>Visión</h3>
+                    <p>Ser una campaña referente en el ámbito académico y comunitario, reconocida por su enfoque simbólico, gráfico y experiencial, capaz de generar reflexión y cambios positivos en la mentalidad de los padres de familia.</p>
+                </div>
+            </div>
+            <div class="about-member">
+                <div class="member-photo">
+                    <img src="images/member1.jpg" alt="Nombre del miembro">
+                </div>
+                <div class="member-info">
+                    <h3>Juan Fernando Moreno Salazar</h3>
+                    <p><strong>Rol:</strong> Director de medios</p>
+                    <p><strong>Carrera:</strong> Diseño Gráfico</p>
+                </div>
+            </div>
+            <div class="about-quote">
+                <p>"El diseño no es solo lo que ves, es cómo te hace sentir. Y queremos que sientas la urgencia de proteger a nuestros niños."</p>
+                <p class="quote-author">- Equipo Punto Focal</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>ProtegerInfancia</h3>
+                    <h3>Tu voz, su escudo.</h3>
                     <p>Trabajando juntos para crear un mundo más seguro para todos los niños.</p>
                 </div>
                 <div class="footer-section">
@@ -332,20 +359,20 @@
                         <li><a href="#tienda">Tienda</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
+                <div class="footer-section-emergency">
                     <h4>Emergencias</h4>
                     <p>📞 911</p>
                     <p>📞 01-800-123-4567</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 ProtegerInfancia. Todos los derechos reservados.</p>
+                <p>&copy; 2025 Punto focal. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
     <!-- Emergency Modal -->
-    <div id="emergencyModal" class="modal">
+    <div id="emergencyModal" class="modal" style="display:none;">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>🚨 Líneas de Emergencia</h2>
@@ -374,7 +401,7 @@
     </div>
 
     <!-- Cart Modal -->
-    <div id="cartModal" class="modal">
+    <div id="cartModal" class="modal" style="display:none;">
         <div class="modal-content cart-modal-content">
             <div class="modal-header">
                 <h2>🛒 Carrito de Compras</h2>
@@ -382,7 +409,7 @@
             </div>
             <div class="modal-body">
                 <div id="cartItems" class="cart-items">
-                    <!-- Cart items will be dynamically added here -->
+                    <!-- Cart items -->
                 </div>
                 <div class="cart-empty" id="cartEmpty">
                     <p>Tu carrito está vacío</p>
@@ -402,7 +429,7 @@
     </div>
 
     <!-- Login Modal -->
-    <div id="loginModal" class="modal">
+    <div id="loginModal" class="modal" style="display:none;">
         <div class="modal-content login-modal-content">
             <div class="modal-header">
                 <h2>👤 Iniciar Sesión</h2>
@@ -438,6 +465,32 @@
             </div>
         </div>
     </div>
-<script src="script.js?v=<?php echo time(); ?>"></script>
-</body>
-</html>
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal" style="display: none;">
+      <div class="modal-content login-modal-content">
+        <div class="modal-header">
+          <h2>📝 Crear Cuenta</h2>
+          <span class="close" onclick="closeRegisterModal()">&times;</span>
+        </div>
+        <div class="modal-body">
+          <form class="register-form" id="registerForm">
+            <div class="form-group">
+              <label for="registerEmail">Correo Electrónico</label>
+              <input type="email" id="registerEmail" placeholder="tu@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="registerPassword">Contraseña</label>
+              <input type="password" id="registerPassword" placeholder="Tu contraseña" required>
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Confirmar Contraseña</label>
+              <input type="password" id="confirmPassword" placeholder="Repite la contraseña" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrarse</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="script.js?v=1"></script>
+    <script type="module" src="./auth.js"></script>
+    <script type="module" src
